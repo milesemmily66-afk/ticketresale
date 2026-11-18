@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TicketResale | Discover Events & Tickets</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#080d19;color:#fff}
+header{height:75px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;background:#10182a;border-bottom:1px solid #263149}
+.logo{font-size:25px;font-weight:800;color:#fff}
+.logo span{color:#38d9a9}
+nav a{color:#dce3f2;text-decoration:none;margin-left:24px;font-size:14px}
+.hero{padding:85px 8%;background:linear-gradient(120deg,#101b37,#142c47,#073c3b)}
+.hero small{color:#40e0b0;font-weight:bold;letter-spacing:2px}
+.hero h1{font-size:clamp(36px,6vw,64px);max-width:750px;margin:20px 0;line-height:1.08}
+.hero h1 span{color:#42dfb1}
+.hero p{color:#c4d0df;font-size:17px;line-height:1.7;max-width:600px}
+.search{margin-top:30px;display:flex;max-width:620px;background:white;padding:7px;border-radius:9px}
+.search input{flex:1;min-width:0;border:0;padding:13px;font-size:15px;outline:none;color:#111}
+button{border:0;border-radius:7px;padding:13px 22px;background:#35d6a5;color:#071b19;font-weight:bold;cursor:pointer}
+.section{padding:55px 7%}
+.section h2{font-size:29px;margin-bottom:10px}
+.sub{color:#aab5c9;margin-bottom:27px}
+.categories{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:35px}
+.category{padding:12px 20px;border:1px solid #34445c;border-radius:30px;color:#dce6f2;cursor:pointer}
+.category.active,.category:hover{background:#35d6a5;color:#071b19;border-color:#35d6a5}
+.events{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.event{background:#151f33;border:1px solid #293750;border-radius:12px;overflow:hidden}
+.poster{height:155px;display:flex;align-items:center;justify-content:center;font-size:55px;background:linear-gradient(135deg,#273d71,#17645e)}
+.poster.two{background:linear-gradient(135deg,#562b72,#b34c58)}
+.poster.three{background:linear-gradient(135deg,#194f77,#237c83)}
+.poster.four{background:linear-gradient(135deg,#713b2b,#bd8844)}
+.details{padding:20px}
+.date{color:#40dcae;font-size:12px;font-weight:bold}
+.details h3{font-size:20px;margin:12px 0}
+.details p{color:#aab5c9;font-size:13px;margin-bottom:15px}
+.price{font-size:19px;font-weight:bold;margin-bottom:17px}
+.price small{font-size:12px;color:#9eacc1;font-weight:normal}
+.details button{width:100%}
+.empty{display:none;color:#aab5c9;padding:25px}
+.info{background:#111b2d;text-align:center;padding:55px 8%}
+.info h2{margin-bottom:15px}
+.info p{color:#aab5c9;line-height:1.8;max-width:650px;margin:auto}
+footer{padding:30px 7%;text-align:center;color:#91a0b7;border-top:1px solid #293750;font-size:13px}
+footer a{color:#40dcb0;text-decoration:none}
+@media(max-width:650px){
+header{padding:0 5%;height:auto;min-height:70px;flex-wrap:wrap;gap:12px;padding-top:15px;padding-bottom:15px}
+nav a{margin-left:10px;font-size:12px}
+.hero{padding:65px 6%}
+.section{padding:42px 5%}
+.search button{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Ticket<span>Resale</span></div>
+<nav>
+<a href="#home">Home</a>
+<a href="#events">Events</a>
+<a href="#about">About</a>
+</nav>
+</header>
+
+<section class="hero" id="home">
+<small>YOUR NEXT EXPERIENCE STARTS HERE</small>
+<h1>Find your next <span>unforgettable</span> event.</h1>
+<p>Discover concerts, festivals, sports and live entertainment. Explore events and find your next experience with TicketResale.</p>
+<div class="search">
+<input id="searchInput" type="search" placeholder="Search events or locations...">
+<button onclick="searchEvents()">Search</button>
+</div>
+</section>
+
+<section class="section" id="events">
+<h2>Explore Events</h2>
+<p class="sub">Discover experiences worth remembering.</p>
+
+<div class="categories">
+<div class="category active" onclick="filterEvents('all',this)">All Events</div>
+<div class="category" onclick="filterEvents('concert',this)">Concerts</div>
+<div class="category" onclick="filterEvents('sports',this)">Sports</div>
+<div class="category" onclick="filterEvents('festival',this)">Festivals</div>
+</div>
+
+<div class="events" id="eventList">
+
+<div class="event" data-category="concert">
+<div class="poster">🎤</div>
+<div class="details">
+<div class="date">DEMO EVENT</div>
+<h3>Live Music Night</h3>
+<p>Live music • New York, USA</p>
+<div class="price">From $45 <small>/ ticket</small></div>
+<button onclick="demoMessage()">Explore Tickets</button>
+</div>
+</div>
+
+<div class="event" data-category="sports">
+<div class="poster two">⚽</div>
+<div class="details">
+<div class="date">DEMO EVENT</div>
+<h3>Championship Match</h3>
+<p>Football • Los Angeles, USA</p>
+<div class="price">From $65 <small>/ ticket</small></div>
+<button onclick="demoMessage()">Explore Tickets</button>
+</div>
+</div>
+
+<div class="event" data-category="festival">
+<div class="poster three">🎪</div>
+<div class="details">
+<div class="date">DEMO EVENT</div>
+<h3>Summer Festival</h3>
+<p>Festival • Miami, USA</p>
+<div class="price">From $80 <small>/ ticket</small></div>
+<button onclick="demoMessage()">Explore Tickets</button>
+</div>
+</div>
+
+<div class="event" data-category="concert">
+<div class="poster four">🎸</div>
+<div class="details">
+<div class="date">DEMO EVENT</div>
+<h3>Rock Legends Live</h3>
+<p>Concert • Chicago, USA</p>
+<div class="price">From $55 <small>/ ticket</small></div>
+<button onclick="demoMessage()">Explore Tickets</button>
+</div>
+</div>
+
+</div>
+<p class="empty" id="empty">No matching events found.</p>
+</section>
+
+<section class="info" id="about">
+<h2>Welcome to TicketResale</h2>
+<p>Our mission is to make discovering live entertainment and finding event tickets easier. We're building a marketplace connecting event organizers and ticket buyers.</p>
+</section>
+
+<footer>
+<p>© 2026 TicketResale. All rights reserved.</p>
+<p style="margin-top:12px">Discover events. Experience more.</p>
+<p style="margin-top:12px"><a href="#home">Back to top</a></p>
+</footer>
+
+<script>
+function demoMessage(){
+alert("Thank you for your interest! TicketResale is currently under development. Ticket purchases are not yet available.");
+}
+
+function filterEvents(category,button){
+document.querySelectorAll('.category').forEach(c=>c.classList.remove('active'));
+button.classList.add('active');
+document.querySelectorAll('.event').forEach(event=>{
+event.style.display=(category==='all'||event.dataset.category===category)?'block':'none';
+});
+document.getElementById('empty').style.display='none';
+}
+
+function searchEvents(){
+let query=document.getElementById('searchInput').value.toLowerCase();
+let count=0;
+document.querySelectorAll('.event').forEach(event=>{
+let match=event.innerText.toLowerCase().includes(query);
+event.style.display=match?'block':'none';
+if(match)count++;
+});
+document.getElementById('empty').style.display=count?'none':'block';
+document.querySelectorAll('.category').forEach(c=>c.classList.remove('active'));
+}
+
+document.getElementById('searchInput').addEventListener('keydown',function(e){
+if(e.key==='Enter')searchEvents();
+});
+</script>
+
+</body>
+</html>
